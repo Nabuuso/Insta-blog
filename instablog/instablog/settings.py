@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -78,11 +79,11 @@ WSGI_APPLICATION = 'instablog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': '127.0.0.1',
-        'USER':'nabuusu',
+        'HOST':os.environ.get('DB_HOST'),
+        'USER':os.environ.get('DB_USER'),
         'PORT':'5432',
-        'NAME':'instablog',
-        'PASSWORD':'12345'
+        'NAME':os.environ.get('DB_NAME'),
+        'PASSWORD':os.environ.get('DB_PASSWORD')
     }
 }
 
