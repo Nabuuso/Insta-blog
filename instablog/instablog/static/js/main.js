@@ -1,23 +1,31 @@
-$(function(){
+$(document).ready(function(){
     //REGISTER USER
     $("#registerBtn").click(function(e){
-        e.preventDefault()
+        e.preventDefault();
         let body = {
-            full_name:$("#fullName").val(),
-            email:$("#email").val(),
-            password:$("#password").val(),
-            username:$("#username").val(),
+            full_name: $("#fullName").val(),
+            email: $("#email").val(),
+            password: $("#password").val(),
+            username: $("#username").val(),
         }
-        console.log(body)
         $.ajax({
             method:'POST',
             url:'register',
             data:body,
             success:function(response){
-                console.log(response)
-                console.log(body)
+                if(response.status == 201){
+                    alert(response.message)
+                    $("#fullName").val("")
+                    $("#email").val("")
+                    $("#password").val("")
+                    $("#username").val("")
+                }else{
+                    alert(response.message)
+                }
+            },
+            error:function(response){
+                alert(response.error)
             }
         })
-        alert("Hello")
     })
 })
