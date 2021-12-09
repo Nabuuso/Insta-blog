@@ -13,17 +13,22 @@ $(document).ready(function(){
             url:'register',
             data:body,
             success:function(response){
+                console.log(response)
+                console.log(JSON.stringify(response))
                 if(response.status == 201){
-                    alert(response.message)
                     $("#fullName").val("")
                     $("#email").val("")
                     $("#password").val("")
                     $("#username").val("")
-                }else{
                     alert(response.message)
+                }else{
+                    // alert(response.message)
+                    alert(response.error)
+                    // $("#register-alert").html(response.error)
                 }
             },
             error:function(response){
+                // $("#register-alert").html(JSON.stringify(response).error)
                 alert(response.error)
             }
         })

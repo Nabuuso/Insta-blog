@@ -1,3 +1,4 @@
-{% include '../header.html' %}
-
-{% include '../footer.html' %}
+<form action="{% url 'logout' %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Signout">
+</form>

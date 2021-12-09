@@ -34,7 +34,7 @@ class Profile(AbstractBaseUser,PermissionsMixin):
         return self.full_name
     class Meta:
         ordering = ['-created_date']
-class Blog(models.Model):
+class Image(models.Model):
     image = models.ImageField(upload_to="images/blog",null=True)
     image_name = models.CharField(max_length=255)
     image_caption = models.TextField()
