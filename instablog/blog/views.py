@@ -17,7 +17,7 @@ class LoginView(View):
             user = auth.authenticate(email=email,password=password)
             if user:
                 auth.login(request,user)
-                return JsonResponse({"success":"login"},status=200)
+                return redirect('dashboard')
             else:
                 messages.error(request,'Invalid login')
                 return render(request,'authentication/login.html')
@@ -29,8 +29,7 @@ class LogoutView(View):
         auth.logout(request)
         messages.success(request,"You have successfully logged out")
         return redirect('login')
-
-
+####REGISTER VIEW
 class RegisterView(View):
     def get(self,request):
         return render(request,'authentication/register.html')
@@ -57,5 +56,9 @@ class RegisterView(View):
                 return JsonResponse({"error":"Username already taken","status":400},status=400)
         else:
             return JsonResponse({"error":"Email already taken","status":400},status=400)
+###CLASS DASHBOARD VIEW
+class DashboardView(View):
+    def get(self,request):
+        return render(request,'dashboard/dashboard.html')
 # def index(request):
 #     return render(request,'authentication/login.html')

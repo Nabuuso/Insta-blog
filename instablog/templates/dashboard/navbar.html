@@ -1,4 +1,39 @@
-<form action="{% url 'logout' %}" method="POST">
+{% extends 'base.html' %}
+{% block body_content %}
+{% load static %}
+<!-- <form action="{% url 'logout' %}" method="POST">
     {% csrf_token %}
     <input type="submit" value="Signout">
-</form>
+</form> -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="dashboard-navbar">
+                            <div style="flex-grow:1">
+                                <h1 class="logo">Insta Blog</h1>
+                            </div>
+                            <div style="flex-grow:1"><input type="text" class="form-control" placeholder="Search............."></div>
+                            <div style="flex-grow:1" class="blog-icons">
+                                <i class="fas fa-home icons"></i>
+                                <i class="far fa-plus-square icons"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        {% block dashboard_content %}
+
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
