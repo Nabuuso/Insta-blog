@@ -38,3 +38,9 @@
     justify-content:center;
     align-items:center;
 }
+.comments-input:focus{
+    outline:none !important;
+}
+.faded-content{
+    color:#808080;
+}

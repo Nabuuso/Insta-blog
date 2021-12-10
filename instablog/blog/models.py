@@ -58,4 +58,16 @@ class Image(models.Model):
     
     class Meta:
         ordering = ['-created_date']
+
+class Comment(models.Model):
+    comment = models.TextField()
+    image = models.ForeignKey(Image,on_delete=models.CASCADE,related_name="image_comments")
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now_add=True)
+    profile = models.ForeignKey(Profile,on_delete=models.CASCADE, related_name="user_comments")
+    def __str__(self):
+        return self.comment
+    class Meta:
+        ordering = ['-created_date']
+
     

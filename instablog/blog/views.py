@@ -92,3 +92,12 @@ class LikesView(View):
         blog.likes += 1
         blog.save()
         return JsonResponse({"likes":blog.likes,"status":200},status=200)
+##COMMENTS
+class CommentsView(View):
+    def post(self,request):
+        image = Image.objects.get(pk=request.POST['image'])
+        comment = request.POST['comment']
+        profile = Profile.objects.get(pk=request.POST['profile'])
+        c = Comment.objects.create(image=image,comment=comment,profile=profile)
+        c.save()
+        return JsonResponse({"success":"Comment posted successfully"})

@@ -3,6 +3,7 @@
 {% load static %}
     <div class="index-page">
         <div class="blog-content">
+            <input type="hidden" id="profile-id" value="{{request.user.id}}">
             {% for image in images%}
             <div class="dashboard-card">
                 <div class="dashboard-card-header">
@@ -29,7 +30,12 @@
                     <div class="image-caption">
                         <p><b>{{image.likes}} likes</b></p>
                         <p>{{ image.image_caption }}</p>
+                        <p class="faded-content">Viw all {{ image.image_comments.count}} comments</p>
                     </div>
+                    <div class="input-group mb-3" style="border:none;">
+                        <input type="text" class="form-control comments-input" id="comments-input-{{image.id}}" placeholder="Comments...." aria-label="Comments" style="border:none;">
+                        <button class="btn btn-link comments-btn" type="button" data-id="{{image.id}}" style="border:none;">Post</button>
+                      </div>
                 </div>
             </div>
             {% endfor %}

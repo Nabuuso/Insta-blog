@@ -75,4 +75,25 @@ $(document).ready(function(){
             }
         })
     })
+    //COMMENT
+    $(".comments-btn").click(function(e){
+        e.preventDefault();
+        let id = $(this).data("id");
+        data = {
+            image:id,
+            comment:$("#comments-input-"+id).val(),
+            profile:$("#profile-id").val()
+        }
+        $.ajax({
+            method:'POST',
+            url:'comments',
+            data:data,
+            success:function(response){
+                location.reload()
+            },
+            error:function(response){
+                location.reload()
+            }
+        })
+    })
 })
