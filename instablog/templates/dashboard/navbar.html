@@ -40,16 +40,24 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="mb-3">
-                                            <label for="image_name" class="form-label">Email
-                                                address</label>
-                                            <input type="email" class="form-control" id="exampleFormControlInput1"
-                                                placeholder="name@example.com">
+                                            <label for="image_name" class="form-label">Image name</label>
+                                            <input type="text" class="form-control" id="imageName"
+                                                placeholder="Image name">
                                         </div>
+                                        <div class="mb-3">
+                                            <label for="imageFile" class="form-label">Select image</label>
+                                            <input class="form-control" type="file" id="imageFile">
+                                          </div>
+                                          <div class="mb-3">
+                                            <label for="imageCaption" class="form-label">Image caption</label>
+                                            <textarea class="form-control" id="imageCaption" rows="3"></textarea>
+                                          </div>
+                                          <input type="hidden" id="user" value="{{request.user.id}}">
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                        <button type="button" class="btn btn-primary" id="upload-img-btn">Save changes</button>
                                     </div>
                                 </div>
                             </div>

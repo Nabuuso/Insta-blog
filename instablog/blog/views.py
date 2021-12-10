@@ -6,6 +6,7 @@ from . models import *
 from django.core.mail import EmailMessage
 from django.contrib import auth
 from django.contrib import messages
+from django.core.files.storage import FileSystemStorage
 # Create your views here.
 class LoginView(View):
     def get(self,request):
@@ -59,6 +60,23 @@ class RegisterView(View):
 ###CLASS DASHBOARD VIEW
 class DashboardView(View):
     def get(self,request):
-        return render(request,'dashboard/dashboard.html')
-# def index(request):
-#     return render(request,'authentication/login.html')
+        return render(request,'dashboard/index.html')
+#######BLOG IMAGES
+class BlogImageView(View):
+    def post(self,request):
+        img = request.FILES.get("image")
+        image_name = request.POST['image_name']
+        image_caption = request.POST['image_caption']
+        profile = request.POST['profile']
+        fss = FileSystemStorage()
+        filename = fss.save(img.name,img)
+        url = fss.url(filename)
+        img_object = Image()
+        img_object.image = url
+        img_object.image_name = image_name
+        img_object.image_caption = image_caption
+        p = Profile.objects.get(pk=profile)
+        img_object.profile = p
+        img_object.save_image()
+        # Image.save_image(image=url,image_name=image_name,image_caption=image_caption,profile=profile)
+        return JsonResponse({"success":"Image uploaded successfully","status":201},status=201)
