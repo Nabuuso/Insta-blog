@@ -37,7 +37,7 @@ This application is a clone of Instagram(popular photo sharing application)
 
 8. Install Django and other Modules
 
-* $ python3 manage.py runserver
+* $ python manage.py runserver
 
 # Technologies Used
 
