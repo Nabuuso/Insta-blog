@@ -71,3 +71,18 @@
 .likes-btn:hover{
     cursor:pointer;
 }
+.image-comments-section{
+    padding-left:1em;
+    display:flex;
+    flex-direction:row;
+    display:none;
+}
+.view-comments{
+    cursor:pointer;
+    font-weight:bolder;
+}
+.comments-comments{
+    display:flex;
+    flex-direction:column;
+    padding-bottom:0.3em;
+}

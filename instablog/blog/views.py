@@ -61,6 +61,8 @@ class RegisterView(View):
 class DashboardView(View):
     def get(self,request):
         images = Image.objects.all()
+        current_user_followers = [p.follower for p in Follower.objects.filter(profile=request.user)]
+        profiles = Profile.object.exclude()
         # import pdb
         # pdb.set_trace()
 
@@ -101,3 +103,12 @@ class CommentsView(View):
         c = Comment.objects.create(image=image,comment=comment,profile=profile)
         c.save()
         return JsonResponse({"success":"Comment posted successfully"})
+##USERS
+class ProfilesView(View):
+    def get(self,request):
+        profiles = Profile.objects.all()
+##FOLLOWERS
+class FollowersView(View):
+    def post(self,request):
+        profile = request.POST['profile']
+        follower = request.POST['follower']

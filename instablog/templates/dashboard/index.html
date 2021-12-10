@@ -1,47 +1,64 @@
 {% extends 'dashboard/navbar.html' %}
 {% block dashboard_content %}
 {% load static %}
-    <div class="index-page">
-        <div class="blog-content">
-            <input type="hidden" id="profile-id" value="{{request.user.id}}">
-            {% for image in images%}
-            <div class="dashboard-card">
-                <div class="dashboard-card-header">
-                    <div class="blog-profile-header">
-                        <div class="blog-profile">
-                            {% if image.profile.profile_pho.url %}
-                                <img src="{{ image.profile.profile_pho.url }}" class="blog-profile-icon" alt="">
-                            {% else %}
-                                <img src="{% static 'img/user.png' %}" class="blog-profile-icon" alt="">
-                            {% endif %}
-                                <span><b>{{ image.profile.username }}</b></span>
-                        </div>
-                        <i class="fas fa-ellipsis-h profile-ellipsis"></i>
+<div class="index-page">
+    <div class="blog-content">
+        <input type="hidden" id="profile-id" value="{{request.user.id}}">
+        {% for image in images%}
+        <div class="dashboard-card">
+            <div class="dashboard-card-header">
+                <div class="blog-profile-header">
+                    <div class="blog-profile">
+                        {% if image.profile.profile_pho.url %}
+                        <img src="{{ image.profile.profile_pho.url }}" class="blog-profile-icon" alt="">
+                        {% else %}
+                        <img src="{% static 'img/user.png' %}" class="blog-profile-icon" alt="">
+                        {% endif %}
+                        <span><b>{{ image.profile.username }}</b></span>
                     </div>
-                   
+                    <i class="fas fa-ellipsis-h profile-ellipsis"></i>
                 </div>
-                <div class="dashboard-card-body">
-                    <img src="{{ image.image.url }}" class="img-fluid blog-image" alt="">
+
+            </div>
+            <div class="dashboard-card-body">
+                <img src="{{ image.image.url }}" class="img-fluid blog-image" alt="">
+            </div>
+            <div class="dashboard-card-footer">
+                <div class="icons">
+                    <i class="far fa-heart likes-btn" data-id="{{image.id}}"></i>
                 </div>
-                <div class="dashboard-card-footer">
-                    <div class="icons">
-                        <i class="far fa-heart likes-btn" data-id="{{image.id}}"></i>
+                <div class="image-caption">
+                    <p><b>{{image.likes}} likes</b></p>
+                    <p>{{ image.image_caption }}</p>
+                    <p class="faded-content view-comments" data-id="{{image.id}}">Viw all {{ image.image_comments.count}} comments</p>
+                </div>
+                <div class="image-comments-section" id="comment-section-{{image.id}}">
+                    {% for comment in image.image_comments.all %}
+                    <div>
+                        {% if comment.profile.profile_pho.url %}
+                        <img src="{{ comment.profile.profile_pho.url }}" class="blog-profile-icon" alt="">
+                        {% else %}
+                        <img src="{% static 'img/user.png' %}" class="blog-profile-icon" alt="">
+                        {% endif %}
                     </div>
-                    <div class="image-caption">
-                        <p><b>{{image.likes}} likes</b></p>
-                        <p>{{ image.image_caption }}</p>
-                        <p class="faded-content">Viw all {{ image.image_comments.count}} comments</p>
+                    <div class="comments-comments">
+                        <span>{{ comment.profile.username }}</span>
+                        <span class="faded-content">{{ comment.comment }}</span>
                     </div>
-                    <div class="input-group mb-3" style="border:none;">
-                        <input type="text" class="form-control comments-input" id="comments-input-{{image.id}}" placeholder="Comments...." aria-label="Comments" style="border:none;">
-                        <button class="btn btn-link comments-btn" type="button" data-id="{{image.id}}" style="border:none;">Post</button>
-                      </div>
+                    {% endfor%}
+                </div>
+                <div class="input-group mb-3" style="border:none;">
+                    <input type="text" class="form-control comments-input" id="comments-input-{{image.id}}"
+                        placeholder="Comment...." aria-label="Comments" style="border:none;">
+                    <button class="btn btn-link comments-btn" type="button" data-id="{{image.id}}"
+                        style="border:none;">Post</button>
                 </div>
             </div>
-            {% endfor %}
         </div>
-        <div class="followers-section">
-
-        </div>
+        {% endfor %}
     </div>
+    <div class="followers-section">
+
+    </div>
+</div>
 {% endblock %}

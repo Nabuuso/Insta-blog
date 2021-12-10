@@ -69,5 +69,18 @@ class Comment(models.Model):
         return self.comment
     class Meta:
         ordering = ['-created_date']
+class Follower(models.Model):
+    profiles = models.ManyToManyField(Profile,through="UserFollower")
+
+class UserFollower(models.Model):
+    profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
+    follower = models.ForeignKey(Follower,on_delete=models.CASCADE)
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.profile
+    class Meta:
+        ordering = ['-created_date']
 
     

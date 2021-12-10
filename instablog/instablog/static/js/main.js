@@ -96,4 +96,10 @@ $(document).ready(function(){
             }
         })
     })
+    $(".view-comments").click(function(e){
+        e.preventDefault()
+        $(".image-comments-section").css({"display":"none"})
+        let id = $(this).data("id")
+        $("#comment-section-"+id).css({"display":"flex"})
+    })
 })
