@@ -30,7 +30,8 @@
                 <div class="image-caption">
                     <p><b>{{image.likes}} likes</b></p>
                     <p>{{ image.image_caption }}</p>
-                    <p class="faded-content view-comments" data-id="{{image.id}}">Viw all {{ image.image_comments.count}} comments</p>
+                    <p class="faded-content view-comments" data-id="{{image.id}}">Viw all {{
+                        image.image_comments.count}} comments</p>
                 </div>
                 <div class="image-comments-section" id="comment-section-{{image.id}}">
                     {% for comment in image.image_comments.all %}
@@ -58,7 +59,56 @@
         {% endfor %}
     </div>
     <div class="followers-section">
+        <div class="user-profile-content">
+            <div>
+                <div class="side-profile">
+                    {% if request.user.profile_pho.url %}
+                    <img src="{{ request.user.profile_pho.url }}" class="side-profile-icon" alt="">
+                    {% else %}
+                    <img src="{% static 'img/user.png' %}" class="side-profile-icon" alt="">
+                    {% endif %}
+                    <div class="side-profile-details">
+                        <span><b>{{ request.user.username }}</b></span>
+                        <span class="faded-content">{{ request.user.full_name}}</span>
+                    </div>
 
+                </div>
+            </div>
+            <div>
+                <form action="{% url 'logout' %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-danger btn-sm">
+                        Logout
+                    </button>
+                </form>
+            </div>
+        </div>
+        <br>
+        <div class="user-followers-content">
+            <div>
+                <span class="faded-content" style="font-weight:bolder;">Suggestions for you</span>
+                {% for profile in profiles %}
+                {% if profile.id == request.user.id %}
+                {% else%}
+                <div class="side-profile">
+                    {% if profile.profile_pho.url %}
+                    <img src="{{ profile.profile_pho.url }}" class="side-follower-icon" alt="">
+                    {% else %}
+                    <img src="{% static 'img/user.png' %}" class="side-follower-icon" alt="">
+                    {% endif %}
+                    <div class="side-profile-details">
+                        <span><b>{{ profile.username }}</b></span>
+                        <span class="faded-content">{{ profile.full_name}}</span>
+                    </div>
+
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            <div>
+                <b><button type="button" class="btn btn-link btn-sm">Follow</button></b>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
