@@ -33,4 +33,21 @@ $(document).ready(function(){
             }
         })
     })
+    //UPLOAD IMAGE
+    $("#upload-img-btn").click(function(e){
+        $.ajax({
+            method:'POST',
+            url:'blog-images',
+            data:'',
+            processData:false,
+            contentType:false,
+            mimeType:"multipart/form-data",
+            success: function(response){
+
+            },
+            error: function(response){
+
+            }
+        })
+    })
 })

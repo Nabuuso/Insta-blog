@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager,PermissionsMixin
+import os
 
 # Create your models here.
 class UserManager(BaseUserManager):
@@ -44,4 +45,13 @@ class Image(models.Model):
 
     def __str__(self):
         return self.image_name
-
+    def save_image(self,*args,**kwargs):
+        super().save(*args,**kwargs)
+    def delete_image(self,pk):
+        img = Image.objects.get(pk=pk)
+        if len(img.image) > 0:
+            os.remove(img.image.path)
+        img.delete()
+    def update_caption(self,*args,**kwargs):
+        super().update(*args,**kwargs)
+    

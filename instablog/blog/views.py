@@ -17,7 +17,7 @@ class LoginView(View):
             user = auth.authenticate(email=email,password=password)
             if user:
                 auth.login(request,user)
-                return redirect('dashboard')
+                return redirect('/dashboard')
             else:
                 messages.error(request,'Invalid login')
                 return render(request,'authentication/login.html')

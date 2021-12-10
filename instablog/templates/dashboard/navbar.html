@@ -15,10 +15,12 @@
                             <div style="flex-grow:1">
                                 <h1 class="logo">Insta Blog</h1>
                             </div>
-                            <div style="flex-grow:1"><input type="text" class="form-control" placeholder="Search............."></div>
+                            <div style="flex-grow:1"><input type="text" class="form-control"
+                                    placeholder="Search............."></div>
                             <div style="flex-grow:1" class="blog-icons">
                                 <i class="fas fa-home icons"></i>
-                                <i class="far fa-plus-square icons"></i>
+                                <i class="far fa-plus-square icons" data-bs-toggle="modal"
+                                    data-bs-target="#postModal"></i>
                             </div>
                         </div>
                     </div>
@@ -27,6 +29,31 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
+                        <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">New Post</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label for="image_name" class="form-label">Email
+                                                address</label>
+                                            <input type="email" class="form-control" id="exampleFormControlInput1"
+                                                placeholder="name@example.com">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         {% block dashboard_content %}
 
                         {% endblock %}
