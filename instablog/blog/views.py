@@ -48,7 +48,7 @@ class RegisterView(View):
                 email = EmailMessage(
                     'InstaBlog Account',
                     'InstaBlog account created successfully',
-                    'muuyiandrew2015@gmail.com',
+                    'liznabuuso@gmail.com',
                     [email]
                 )
                 email.send(fail_silently=True)
