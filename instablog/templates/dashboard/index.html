@@ -2,7 +2,39 @@
 {% block dashboard_content %}
 {% load static %}
     <div class="index-page">
-        <div></div>
-        <div></div>
+        <div class="blog-content">
+            {% for image in images%}
+            <div class="dashboard-card">
+                <div class="dashboard-card-header">
+                    <div class="blog-profile-header">
+                        <div class="blog-profile">
+                            {% if image.profile.profile_pho.url %}
+                                <img src="{{ image.profile.profile_pho.url }}" class="blog-profile-icon" alt="">
+                            {% else %}
+                                <img src="{% static 'img/user.png' %}" class="blog-profile-icon" alt="">
+                            {% endif %}
+                                <span><b>{{ image.profile.username }}</b></span>
+                        </div>
+                        <i class="fas fa-ellipsis-h profile-ellipsis"></i>
+                    </div>
+                   
+                </div>
+                <div class="dashboard-card-body">
+                    <img src="{{ image.image.url }}" class="img-fluid blog-image" alt="">
+                </div>
+                <div class="dashboard-card-footer">
+                    <div class="icons">
+                        <i class="far fa-heart"></i>
+                    </div>
+                    <div class="image-caption">
+                        <p>{{ image.image_caption }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="followers-section">
+
+        </div>
     </div>
 {% endblock %}

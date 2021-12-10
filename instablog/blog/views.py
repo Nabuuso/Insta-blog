@@ -29,7 +29,7 @@ class LogoutView(View):
     def post(self,request):
         auth.logout(request)
         messages.success(request,"You have successfully logged out")
-        return redirect('login')
+        return redirect('/login')
 ####REGISTER VIEW
 class RegisterView(View):
     def get(self,request):
@@ -60,7 +60,11 @@ class RegisterView(View):
 ###CLASS DASHBOARD VIEW
 class DashboardView(View):
     def get(self,request):
-        return render(request,'dashboard/index.html')
+        images = Image.objects.all()
+        # import pdb
+        # pdb.set_trace()
+
+        return render(request,'dashboard/index.html',{"images":images})
 #######BLOG IMAGES
 class BlogImageView(View):
     def post(self,request):
@@ -68,11 +72,11 @@ class BlogImageView(View):
         image_name = request.POST['image_name']
         image_caption = request.POST['image_caption']
         profile = request.POST['profile']
-        fss = FileSystemStorage()
-        filename = fss.save(img.name,img)
-        url = fss.url(filename)
+        # fss = FileSystemStorage()
+        # filename = fss.save(img.name,img)
+        # url = fss.url(filename)
         img_object = Image()
-        img_object.image = url
+        img_object.image = img
         img_object.image_name = image_name
         img_object.image_caption = image_caption
         p = Profile.objects.get(pk=profile)
