@@ -61,7 +61,7 @@ class RegisterView(View):
 class DashboardView(View):
     def get(self,request):
         images = Image.objects.all()
-        current_user_followers = [p.follower for p in Follower.objects.filter(profiles=request.user)]
+        current_user_followers = [p.user_follower.id for p in ProfileFollower.objects.filter(profile=request.user)]
         # import pdb
         # pdb.set_trace()
         profiles = Profile.objects.exclude(id__in=current_user_followers)
@@ -109,5 +109,8 @@ class ProfilesView(View):
 ##FOLLOWERS
 class FollowersView(View):
     def post(self,request):
-        profile = request.POST['profile']
-        follower = request.POST['follower']
+        profile = Profile.objects.get(pk=request.POST['profile'])
+        follower = Profile.objects.get(pk=request.POST['follower'])
+        f = ProfileFollower.objects.create(profile=profile,user_follower=follower)
+        f.save()
+        return JsonResponse({"success":"Record saved successfully","status":201},status=201)

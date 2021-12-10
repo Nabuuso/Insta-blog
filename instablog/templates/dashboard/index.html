@@ -30,8 +30,8 @@
                 <div class="image-caption">
                     <p><b>{{image.likes}} likes</b></p>
                     <p>{{ image.image_caption }}</p>
-                    <p class="faded-content view-comments" data-id="{{image.id}}">Viw all {{
-                        image.image_comments.count}} comments</p>
+                    <p class="faded-content view-comments" data-id="{{image.id}}">View all {%
+                        image.image_comments.count %} comments</p>
                 </div>
                 <div class="image-comments-section" id="comment-section-{{image.id}}">
                     {% for comment in image.image_comments.all %}
@@ -45,7 +45,7 @@
                     <div class="comments-comments">
                         <span>{{ comment.profile.username }}</span>
                         <span class="faded-content">{{ comment.comment }}</span>
-                    </div>
+                    </div><br>
                     {% endfor%}
                 </div>
                 <div class="input-group mb-3" style="border:none;">
@@ -90,24 +90,28 @@
                 {% for profile in profiles %}
                 {% if profile.id == request.user.id %}
                 {% else%}
-                <div class="side-profile">
-                    {% if profile.profile_pho.url %}
-                    <img src="{{ profile.profile_pho.url }}" class="side-follower-icon" alt="">
-                    {% else %}
-                    <img src="{% static 'img/user.png' %}" class="side-follower-icon" alt="">
-                    {% endif %}
-                    <div class="side-profile-details">
-                        <span><b>{{ profile.username }}</b></span>
-                        <span class="faded-content">{{ profile.full_name}}</span>
-                    </div>
+                <div class="single-follower-content">
+                    <div class="side-profile">
+                        {% if profile.profile_pho.url %}
+                        <img src="{{ profile.profile_pho.url }}" class="side-follower-icon" alt="">
+                        {% else %}
+                        <img src="{% static 'img/user.png' %}" class="side-follower-icon" alt="">
+                        {% endif %}
+                        <div class="side-profile-details">
+                            <span><b>{{ profile.username }}</b></span>
+                            <span class="faded-content">{{ profile.full_name}}</span>
+                        </div>
 
+                    </div>
+                    <div>
+                        <b><button type="button" class="btn btn-link btn-sm follow-btn"
+                                data-id="{{profile.id}}">Follow</button></b>
+                    </div>
                 </div>
                 {% endif %}
                 {% endfor %}
             </div>
-            <div>
-                <b><button type="button" class="btn btn-link btn-sm">Follow</button></b>
-            </div>
+
         </div>
     </div>
 </div>

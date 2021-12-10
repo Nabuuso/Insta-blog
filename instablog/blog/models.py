@@ -70,7 +70,7 @@ class Comment(models.Model):
     class Meta:
         ordering = ['-created_date']
 class Follower(models.Model):
-    profiles = models.ManyToManyField(Profile,through="UserFollower")
+    profiles = models.ManyToManyField(Profile, through="UserFollower")
 
 class UserFollower(models.Model):
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
@@ -82,5 +82,14 @@ class UserFollower(models.Model):
         return self.profile
     class Meta:
         ordering = ['-created_date']
+class ProfileFollower(models.Model):
+    profile = models.ForeignKey(Profile,on_delete=models.CASCADE, related_name="profiles_follower")
+    user_follower = models.ForeignKey(Profile,on_delete=models.CASCADE,related_name="users_follower")
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now_add=True)
 
-    
+    def __str__(self):
+        return self.profile
+    class Meta:
+        ordering = ['-created_date']
+

@@ -102,4 +102,24 @@ $(document).ready(function(){
         let id = $(this).data("id")
         $("#comment-section-"+id).css({"display":"flex"})
     })
+    //FOLLOW USER
+    $(".follow-btn").click(function(e){
+        e.preventDefault()
+        let follower = $(this).data("id")
+        let profile = $("#profile-id").val()
+        $.ajax({
+            method:'POST',
+            url:'follow',
+            data :{
+                profile:profile,
+                follower:follower
+            },
+            success:function(response){
+                location.reload()
+            },
+            error:function(response){
+                location.reload()
+            }
+        })
+    })
 })

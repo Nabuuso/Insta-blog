@@ -9,5 +9,6 @@ urlpatterns = [
     path('dashboard',login_required(DashboardView.as_view()),name="dashboad"),
     path('blog-images', csrf_exempt(BlogImageView.as_view()),name="blog-images"),
     path('likes',csrf_exempt(LikesView.as_view()),name="likes"),
-    path('comments',csrf_exempt(CommentsView.as_view()),name="comments")
+    path('comments',csrf_exempt(CommentsView.as_view()),name="comments"),
+    path('follow',csrf_exempt(FollowersView.as_view()),name="follow")
 ]
