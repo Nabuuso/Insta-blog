@@ -49,7 +49,7 @@ This application is a clone of Instagram(popular photo sharing application)
 * Sr Nabuuso Betty(fsp)
 * wagabaliz@gmail.com
 
-## License
+# License
 This project is licensed under the MIT License 
 
 * Copyright (c) 2021. Sr Nabuuso Betty(fsp)
