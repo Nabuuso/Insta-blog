@@ -18,9 +18,10 @@
                             <div style="flex-grow:1"><input type="text" class="form-control"
                                     placeholder="Search............."></div>
                             <div style="flex-grow:1" class="blog-icons">
-                                <i class="fas fa-home icons"></i>
+                                <a href="{% url 'dashboard' %}"><i class="fas fa-home icons"></i></a>
                                 <i class="far fa-plus-square icons" data-bs-toggle="modal"
                                     data-bs-target="#postModal"></i>
+                                    <a href="{% url 'profile' %}"><i class="fas fa-user icons"></i></a>
                             </div>
                         </div>
                     </div>

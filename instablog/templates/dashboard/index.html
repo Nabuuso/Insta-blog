@@ -9,8 +9,8 @@
             <div class="dashboard-card-header">
                 <div class="blog-profile-header">
                     <div class="blog-profile">
-                        {% if image.profile.profile_pho.url %}
-                        <img src="{{ image.profile.profile_pho.url }}" class="blog-profile-icon" alt="">
+                        {% if image.profile.profile_photo %}
+                        <img src="{{ image.profile.profile_photo.url }}" class="blog-profile-icon" alt="">
                         {% else %}
                         <img src="{% static 'img/user.png' %}" class="blog-profile-icon" alt="">
                         {% endif %}
@@ -30,14 +30,14 @@
                 <div class="image-caption">
                     <p><b>{{image.likes}} likes</b></p>
                     <p>{{ image.image_caption }}</p>
-                    <p class="faded-content view-comments" data-id="{{image.id}}">View all {%
-                        image.image_comments.count %} comments</p>
+                    <p class="faded-content view-comments" data-id="{{image.id}}">
+                        View all {{ image.image_comments.count }} comments</p>
                 </div>
                 <div class="image-comments-section" id="comment-section-{{image.id}}">
                     {% for comment in image.image_comments.all %}
                     <div>
-                        {% if comment.profile.profile_pho.url %}
-                        <img src="{{ comment.profile.profile_pho.url }}" class="blog-profile-icon" alt="">
+                        {% if comment.profile.profile_photo %}
+                        <img src="{{ comment.profile.profile_photo.url }}" class="blog-profile-icon" alt="">
                         {% else %}
                         <img src="{% static 'img/user.png' %}" class="blog-profile-icon" alt="">
                         {% endif %}
@@ -62,8 +62,8 @@
         <div class="user-profile-content">
             <div>
                 <div class="side-profile">
-                    {% if request.user.profile_pho.url %}
-                    <img src="{{ request.user.profile_pho.url }}" class="side-profile-icon" alt="">
+                    {% if request.user.profile_phototo %}
+                    <img src="{{ request.user.profile_photo.url }}" class="side-profile-icon" alt="">
                     {% else %}
                     <img src="{% static 'img/user.png' %}" class="side-profile-icon" alt="">
                     {% endif %}
@@ -92,8 +92,8 @@
                 {% else%}
                 <div class="single-follower-content">
                     <div class="side-profile">
-                        {% if profile.profile_pho.url %}
-                        <img src="{{ profile.profile_pho.url }}" class="side-follower-icon" alt="">
+                        {% if profile.profile_photo %}
+                        <img src="{{ profile.profile_photo.url }}" class="side-follower-icon" alt="">
                         {% else %}
                         <img src="{% static 'img/user.png' %}" class="side-follower-icon" alt="">
                         {% endif %}

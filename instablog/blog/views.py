@@ -105,7 +105,22 @@ class CommentsView(View):
 ##USERS
 class ProfilesView(View):
     def get(self,request):
-        profiles = Profile.objects.all()
+        images = Image.objects.filter(profile=request.user)
+        following = ProfileFollower.objects.filter(profile=request.user).count()
+        return render(request,'dashboard/profile.html',{"images":images,"following":following})
+##EDIT PROFILE
+class EditProfile(View):
+    def get(self,request):
+        user = Profile.objects.get(id=request.user.id)
+        return render(request,'dashboard/edit_profile.html',{"user":user})
+    def post(self,request):
+        user = Profile.objects.get(id=request.POST['id'])
+        user.email = request.POST['email'],
+        user.bio = request.POST['bio'],
+        user.full_name = request.POST['full_name'],
+        user.username = request.POST['username']
+        user.save()
+        return JsonResponse({"success":"Record updated successfully","status":200}, status=200)
 ##FOLLOWERS
 class FollowersView(View):
     def post(self,request):

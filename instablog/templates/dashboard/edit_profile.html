@@ -1,0 +1,41 @@
+{% extends 'dashboard/navbar.html' %}
+{% block dashboard_content %}
+{% load static %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h4 class="faded-content" style="text-align:center;">Edit user</h4>
+            <div class="row">
+                <div class="col-12">
+                    <input type="text"  id="userId" value="{{request.user.id}}">
+                    <div class="mb-3">
+                        <label for="fullName" class="form-label">Full name</label>
+                        <input type="text" class="form-control" id="editFullName" placeholder="Full name" value="{{request.user.full_name}}">
+                      </div>
+                </div>
+                <div class="col-12">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="editEmail" placeholder="Email" value="{{request.user.email}}">
+                      </div>
+                </div>
+                <div class="col-12">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="editUsername" placeholder="Username" value="{{request.user.username}}">
+                      </div>
+                </div>
+                <div class="col-12">
+                    <div class="mb-3">
+                        <label for="editBio" class="form-label">Bio</label>
+                        <textarea class="form-control" id="editBio" rows="3">{{ request.user.bio}}</textarea>
+                      </div>
+                </div>
+                <div class="col-12">
+                   <button type="button" class="btn btn-success form-control" id="edit-profile">Edit profile</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

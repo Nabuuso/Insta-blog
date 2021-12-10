@@ -11,6 +11,12 @@
     margin:0.3em;
     cursor:pointer;
 }
+.icons-img{
+    width:1em;
+    margin:0.3em;
+    cursor:pointer;
+    border-radius:50%;
+}
 .blog-icons{
     display:flex;
     flex-direction:row;
@@ -124,4 +130,14 @@
     flex-direction:row;
     justify-content:space-between;
     align-items:center;
+}
+.profile-user{
+    width:7em;
+    border-radius:50%;
+    margin:2em;
+}
+.profile-page-top{
+    display:flex;
+    width:100%;
+    flex-direction:row;
 }

@@ -122,4 +122,22 @@ $(document).ready(function(){
             }
         })
     })
+    //EDIT PROFILE
+    $("#edit-profile").click(function(e){
+        e.preventDefault()
+        $.ajax({
+            method:'POST',
+            url:'edit-profile',
+            data:{
+                full_name:$("#editFullName").val(),
+                email:$("#editEmail").val(),
+                username:$("#editUsername").val(),
+                bio:$("#editBio").val(),
+                id:$("#userId").val()
+            },
+            success:function(response){
+                alert("User updated successfully")
+            }
+        })
+    })
 })
