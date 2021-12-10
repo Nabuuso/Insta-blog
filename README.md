@@ -27,7 +27,7 @@ This application is a clone of Instagram(popular photo sharing application)
 
 - Terminal
 
-Link:-> ```https://github.com/Nabuuso/Insta-blog/
+Link: https://github.com/Nabuuso/Insta-blog/
 
 5. **Clone** the project.
 
