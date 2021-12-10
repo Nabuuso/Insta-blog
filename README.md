@@ -41,8 +41,7 @@ Link:-> ```https://github.com/Nabuuso/Insta-blog/
 
 # Technologies Used
 
-* Python 3.8
-* Django
+* Python-django
 * Postgresql
 
 # AUTHOR
