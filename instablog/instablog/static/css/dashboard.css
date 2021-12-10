@@ -9,6 +9,7 @@
 .icons{
     font-size:1.5em;
     margin:0.5em;
+    cursor:pointer;
 }
 .blog-icons{
     display:flex;
@@ -63,4 +64,10 @@
 .profile-ellipsis{
     margin-right:1em;
     font-size:2em;
+}
+.likes-btn{
+    cursor:pointer;
+}
+.likes-btn:hover{
+    cursor:pointer;
 }

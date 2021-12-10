@@ -42,6 +42,7 @@ class Image(models.Model):
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now_add=True)
+    likes = models.IntegerField(default=0)
 
     def __str__(self):
         return self.image_name
@@ -54,4 +55,7 @@ class Image(models.Model):
         img.delete()
     def update_caption(self,*args,**kwargs):
         super().update(*args,**kwargs)
+    
+    class Meta:
+        ordering = ['-created_date']
     

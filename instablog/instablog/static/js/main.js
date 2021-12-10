@@ -49,10 +49,29 @@ $(document).ready(function(){
             contentType:false,
             mimeType:"multipart/form-data",
             success: function(response){
-                console.log(response)
+                location.reload()
             },
             error: function(response){
-                console.log(response)
+                alert(response.error)
+            }
+        })
+    })
+    //LIKES
+
+    $(".likes-btn").click(function(e){
+        let id = $(this).data("id");
+        let data = {
+            id:id
+        }
+        $.ajax({
+            method:'POST',
+            url:'likes',
+            data:data,
+            success:function(response){
+                location.reload()
+            },
+            error:function(response){
+                alert(response.error)
             }
         })
     })

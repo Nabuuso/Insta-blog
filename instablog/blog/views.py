@@ -84,3 +84,11 @@ class BlogImageView(View):
         img_object.save_image()
         # Image.save_image(image=url,image_name=image_name,image_caption=image_caption,profile=profile)
         return JsonResponse({"success":"Image uploaded successfully","status":201},status=201)
+###LIKES
+class LikesView(View):
+    def post(self,request):
+        id = request.POST['id']
+        blog = Image.objects.get(pk=id)
+        blog.likes += 1
+        blog.save()
+        return JsonResponse({"likes":blog.likes,"status":200},status=200)

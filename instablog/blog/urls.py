@@ -7,5 +7,6 @@ urlpatterns = [
     path('logout',LogoutView.as_view(),name='logout'),
     path('register',csrf_exempt(RegisterView.as_view()),name="register"),
     path('dashboard',login_required(DashboardView.as_view()),name="dashboad"),
-    path('blog-images', csrf_exempt(BlogImageView.as_view()),name="blog-images")
+    path('blog-images', csrf_exempt(BlogImageView.as_view()),name="blog-images"),
+    path('likes',csrf_exempt(LikesView.as_view()),name="likes")
 ]
